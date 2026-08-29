@@ -132,11 +132,9 @@ def execute_high_risk_action(state: GraphState) -> dict[str, object]:
     typed_decision = cast(HumanDecision, decision)
     reviewer_id = state.get("reviewer_id") or "unknown-reviewer"
     action = state["proposed_action"]
-
-    if typed_decision == "reject":
-        execution_result = f"aborted:{action}"
-    else:
-        execution_result = f"executed:{action}"
+    execution_result = (
+        f"aborted:{action}" if typed_decision == "reject" else f"executed:{action}"
+    )
 
     _record_audit(
         state,
