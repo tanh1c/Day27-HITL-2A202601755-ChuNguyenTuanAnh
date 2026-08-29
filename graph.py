@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
-from typing import Any, Literal, cast
+from typing import Any, Literal
 
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
@@ -129,17 +129,14 @@ def execute_high_risk_action(state: GraphState) -> dict[str, object]:
     if decision not in {"approve", "reject", "edit"}:
         raise RuntimeError("high-risk action requires approve, reject, or edit decision")
 
-    typed_decision = cast(HumanDecision, decision)
     reviewer_id = state.get("reviewer_id") or "unknown-reviewer"
     action = state["proposed_action"]
-    execution_result = (
-        f"aborted:{action}" if typed_decision == "reject" else f"executed:{action}"
-    )
+    execution_result = f"aborted:{action}" if decision == "reject" else f"executed:{action}"
 
     _record_audit(
         state,
         reviewer_id=reviewer_id,
-        decision=cast(AuditDecision, typed_decision),
+        decision=decision,
     )
     return {"execution_result": execution_result}
 
