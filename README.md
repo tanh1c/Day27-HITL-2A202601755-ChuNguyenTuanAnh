@@ -1,5 +1,11 @@
 # Lab 27 — Agent Human-in-the-Loop (HITL)
 
+## Student information
+
+- **Họ và tên:** Chu Nguyễn Tuấn Anh
+- **MSSV:** 2A202601755
+- **Bài:** Lab 27 — Xây dựng hệ thống Agent Human-in-the-Loop (HITL)
+
 A deterministic LangGraph workflow for churn-risk evaluation with confidence routing, hard policy rules, human approval in Streamlit, checkpointed state, and an append-preserving audit trail.
 
 ## What is implemented
