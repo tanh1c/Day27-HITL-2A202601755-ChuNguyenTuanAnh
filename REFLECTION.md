@@ -1,5 +1,9 @@
 # Reflection Questions
 
+- **Họ và tên:** Chu Nguyễn Tuấn Anh
+- **MSSV:** 2A202601755
+- **Lab:** 27 — Agent Human-in-the-Loop (HITL)
+
 ## Câu 1 — `interrupt_before` hay `interrupt_after`?
 
 Nếu email retention vừa được generate và con người cần **rewrite output đó trước khi workflow sang routing node**, lựa chọn trực tiếp nhất là `interrupt_after` trên node generate email. Ta cần cho node generation chạy xong để có nội dung email trong state, sau đó dừng ngay sau node đó để reviewer chỉnh sửa; routing chỉ được chạy khi graph resume. Một breakpoint `interrupt_before` trên chính routing node cũng đặt điểm dừng ở cùng ranh giới, nhưng theo cách đặt câu hỏi “sau khi email vừa được generate”, `interrupt_after` generation node diễn đạt intent rõ nhất.
